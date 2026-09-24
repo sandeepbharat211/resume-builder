@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create Resume{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-header py-4 rounded-top" style="background:linear-gradient(135deg,#0d6efd,#6610f2);color:#fff;">
+        <h4 class="mb-1 fw-bold"><i class="bi bi-file-earmark-plus me-2"></i>Create Professional Resume</h4>
+        <p class="mb-0 opacity-75 small">Template: <strong>{{ selected_template|title }}</strong> — you can change this anytime</p>
+      </div>
+      <div class="card-body p-4 p-lg-5">
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="template" value="{{ selected_template }}">
+          <h6 class="text-primary fw-bold mb-3">👤 Personal Information</h6>
+          <div class="row g-3">
+            {% for field in form %}
+            {% if field.name != 'template' and field.name != 'profile_image' %}
+            <div class="col-md-6">
+              <label class="form-label">{{ field.label }}{% if field.field.required %} <span class="text-danger">*</span>{% endif %}</label>
+              {{ field }}
+              {% if field.help_text %}<small class="text-muted">{{ field.help_text }}</small>{% endif %}
+              {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors }}</div>{% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            <!-- Profile photo: uses the crop/zoom/adjust widget (see static/js/photo-cropper.js)
+                 instead of a plain file input, so the user can position the photo
+                 exactly how they want before it's uploaded. -->
+            <div class="col-md-6">
+              <label class="form-label">{{ form.profile_image.label }}</label>
+              <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle bg-light border d-flex align-items-center justify-content-center overflow-hidden flex-shrink-0" style="width:64px;height:64px;">
+                  <img id="crPhotoPreview" src="" alt="Preview" style="width:100%;height:100%;object-fit:cover;display:none;">
+                  <i id="crPhotoPlaceholder" class="bi bi-person-fill text-muted" style="font-size:26px;"></i>
+                </div>
+                <div class="flex-grow-1">
+                  {{ form.profile_image }}
+                  <small class="text-muted d-block mt-1">You'll be able to crop &amp; zoom the photo after selecting it.</small>
+                </div>
+              </div>
+              {% if form.profile_image.errors %}<div class="text-danger small mt-1">{{ form.profile_image.errors }}</div>{% endif %}
+            </div>
+          </div>
+          <hr class="my-4">
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <button type="submit" class="btn btn-success btn-lg px-5"><i class="bi bi-save me-2"></i>Save Resume</button>
+            <a href="{% url 'choose_template' %}" class="btn btn-secondary btn-lg px-5">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Photo crop/zoom/adjust modal (shared markup pattern -- also used on
+     edit_resume.html and accounts/edit_profile.html) -->
+<div class="modal fade" id="photoCropModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0">
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold"><i class="bi bi-crop"></i> Adjust Your Photo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div style="max-height:400px;overflow:hidden;">
+          <img id="photoCropperImage" src="" style="max-width:100%;display:block;">
+        </div>
+        <div class="d-flex justify-content-center gap-2 mt-3">
+          <button type="button" id="photoZoomOutBtn" class="btn btn-outline-secondary btn-sm"><i class="bi bi-zoom-out"></i></button>
+          <button type="button" id="photoZoomInBtn" class="btn btn-outline-secondary btn-sm"><i class="bi bi-zoom-in"></i></button>
+        </div>
+        <p class="text-muted small mt-2 mb-0">Drag to move, scroll/pinch or use the buttons to zoom.</p>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="photoApplyCropBtn" class="btn btn-primary"><i class="bi bi-check-lg"></i> Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+<script src="{% static 'js/photo-cropper.js' %}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    initPhotoCropper({
+      fileInputId: 'id_profile_image',
+      modalId: 'photoCropModal',
+      cropperImageId: 'photoCropperImage',
+      previewImageId: 'crPhotoPreview',
+      placeholderId: 'crPhotoPlaceholder',
+      applyBtnId: 'photoApplyCropBtn',
+      zoomInBtnId: 'photoZoomInBtn',
+      zoomOutBtnId: 'photoZoomOutBtn',
+    });
+  });
+</script>
+{% endblock %}

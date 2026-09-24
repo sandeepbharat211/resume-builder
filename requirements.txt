@@ -1,0 +1,21 @@
+# Core framework
+Django>=4.2
+
+# MySQL database driver
+mysqlclient>=2.1.0
+
+# Image handling (profile photos, resume photos)
+Pillow>=10.0
+
+# PDF generation -- renders the SAME HTML/CSS used for the on-screen resume
+# preview into a pixel-accurate PDF (replaces the old, unused xhtml2pdf
+# dependency which the code never actually called).
+weasyprint>=61.0
+
+# Google Gemini AI (AI Assistant features -- summary/skills/description
+# generation and template suggestions). We use the "gemini-2.5-flash" model.
+google-generativeai>=0.5.0
+
+# Loads secrets (API keys, DB password, etc.) from a local .env file
+# instead of hardcoding them in settings.py.
+python-dotenv>=1.0.0

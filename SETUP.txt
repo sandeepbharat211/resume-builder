@@ -1,0 +1,76 @@
+============================================================
+  ResumePro - Complete Setup Guide
+============================================================
+
+1. INSTALL DEPENDENCIES
+   pip install -r requirements.txt
+
+   NOTE on WeasyPrint (used for PDF downloads): on Windows/Linux it
+   needs a couple of system libraries (Pango/Cairo/GDK-PixBuf). If
+   `pip install` succeeds but PDF download errors out, follow the
+   OS-specific install steps here: https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation
+
+2. CONFIGURE SECRETS (.env file)
+   - Copy .env.example to a new file named .env (same folder as manage.py)
+   - Fill in:
+       DJANGO_SECRET_KEY   -> any long random string
+       DB_* values          -> your MySQL credentials
+       GEMINI_API_KEY       -> from https://aistudio.google.com/app/apikey
+   - Tip: don't want to install MySQL right now? Set USE_SQLITE=True in
+     .env and skip straight to step 4 -- no database server needed.
+
+3. MYSQL DATABASE SETUP (skip if using USE_SQLITE=True)
+   - Open MySQL and run:
+     CREATE DATABASE resume_builder_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+4. RUN MIGRATIONS
+   python manage.py makemigrations
+   python manage.py migrate
+
+5. CREATE ADMIN USER
+   python manage.py createsuperuser
+
+6. COLLECT STATIC FILES
+   python manage.py collectstatic
+
+7. RUN SERVER
+   python manage.py runserver
+
+8. ACCESS
+   - Site:        http://127.0.0.1:8000/
+   - Custom Admin: http://127.0.0.1:8000/myadmin/  (needs is_staff=True)
+   - Django Admin: http://127.0.0.1:8000/admin/
+
+============================================================
+  FEATURES
+============================================================
+- 4 resume templates (Modern / Professional / Creative / Executive)
+- Pixel-accurate PDF download (WeasyPrint) -- the PDF always matches
+  the on-screen preview exactly, including the profile photo
+- One-click Print button (browser print, straight from the preview)
+- Crop / zoom / move photo adjustment before upload (profile photo and
+  resume photo), powered by Cropper.js
+- Gemini 2.5 Flash AI assistant: career summary, skill suggestions,
+  job/project descriptions, and template recommendations
+- Custom staff-only admin analytics dashboard (/myadmin/)
+
+============================================================
+  SECURITY NOTE
+============================================================
+Never commit your real .env file (API keys, DB password) to git or
+include it when sharing this project. Only .env.example (with
+placeholder values) is meant to be shared.
+
+============================================================
+  TROUBLESHOOTING: "I edited a .html file but nothing changed"
+============================================================
+1. Fully stop the server (Ctrl+C in the terminal) and start it again
+   with `python manage.py runserver` -- don't just refresh the browser.
+2. Hard-refresh the browser: Ctrl+Shift+R (Windows/Linux) or
+   Cmd+Shift+R (Mac).
+3. Still stuck? Open the page in a brand-new Incognito/Private window
+   so there's zero cached data to worry about.
+4. Confirm you're editing the file the server is actually running from
+   -- if you have more than one copy of this project folder on your
+   computer, double-check the path in your terminal / editor matches.
+

@@ -1,0 +1,51 @@
+{% comment %}
+Shared toolbar include used by all 4 resume style templates (modern/
+professional/creative/executive). Only shown in preview mode (see
+resume/views.py::render_resume_template) -- it never appears in the PDF
+(pdf_mode=True skips it entirely, see the {% if preview %} guard below).
+
+Buttons: Print, Download PDF, Change Template, Back.
+{% endcomment %}
+
+{% if preview %}
+<div class="rp-toolbar">
+  <span>👁️ Preview Mode</span>
+  <button type="button" onclick="window.print()" class="btn btn-primary btn-sm ms-3">
+    <i class="bi bi-printer-fill"></i> Print
+  </button>
+  <a href="{% url 'download_resume' resume.id %}" class="btn btn-success btn-sm ms-2"><i class="bi bi-download"></i> Download PDF</a>
+  <a href="{% url 'change_template' resume.id %}" class="btn btn-warning btn-sm ms-2"><i class="bi bi-palette"></i> Change Template</a>
+  <a href="{% url 'resume_detail' resume.id %}" class="btn btn-secondary btn-sm ms-2"><i class="bi bi-arrow-left"></i> Back</a>
+</div>
+
+<style>
+  .rp-toolbar {
+    background: #212529;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  /* Hide the toolbar when the browser's Print dialog renders the page,
+     so printed/PDF-via-browser output only shows the resume itself. */
+  @media print {
+    .rp-toolbar {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Arriving via the "Print" button on resume_detail.html (?print=1)
+  // opens the preview and immediately triggers the browser print dialog,
+  // so the user doesn't have to click Print twice.
+  (function () {
+    if (window.location.search.indexOf('print=1') !== -1) {
+      window.addEventListener('load', function () {
+        window.print();
+      });
+    }
+  })();
+</script>
+{% endif %}

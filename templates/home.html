@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ResumePro - Build Professional Resumes{% endblock %}
+{% block content %}
+<!-- Hero -->
+<section class="py-5 text-center">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <span class="badge mb-3 px-3 py-2 fs-6" style="background:linear-gradient(135deg,#0d6efd,#6610f2);color:#fff;">✨ AI-Powered Resume Builder</span>
+      <h1 class="display-4 fw-black mb-3" style="font-weight:900;letter-spacing:-1px;">Build Your <span style="background:linear-gradient(135deg,#0d6efd,#6610f2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Dream Resume</span><br>in Minutes</h1>
+      <p class="lead text-muted mb-4">4 professional templates, AI content generation, instant PDF download. Land your dream job faster.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        {% if user.is_authenticated %}
+        <a href="{% url 'choose_template' %}" class="btn btn-primary btn-lg px-5"><i class="bi bi-plus-lg me-2"></i>Create Resume</a>
+        <a href="{% url 'dashboard' %}" class="btn btn-outline-dark btn-lg px-5">Dashboard</a>
+        {% else %}
+        <a href="{% url 'signup' %}" class="btn btn-primary btn-lg px-5"><i class="bi bi-rocket-takeoff me-2"></i>Get Started Free</a>
+        <a href="{% url 'login' %}" class="btn btn-outline-dark btn-lg px-5">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Templates Preview -->
+<section class="py-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">4 Professional Templates</h2>
+    <p class="text-muted">Choose the style that fits your career</p>
+  </div>
+  <div class="row g-4">
+    {% for tpl in templates %}
+    <div class="col-md-6 col-lg-3">
+      <div class="card border-0 shadow-lg h-100 overflow-hidden">
+        <div style="height:180px;background:{{ tpl.bg }};display:flex;align-items:center;justify-content:center;position:relative;">
+          <div style="width:120px;background:#fff;border-radius:10px;padding:14px;box-shadow:0 8px 24px rgba(0,0,0,.2);">
+            <div style="width:28px;height:28px;border-radius:50%;background:{{ tpl.color }};margin:0 auto 8px;"></div>
+            <div style="height:5px;background:{{ tpl.color }};border-radius:3px;margin-bottom:4px;"></div>
+            <div style="height:3px;background:#eee;border-radius:3px;margin-bottom:3px;"></div>
+            <div style="height:3px;background:#eee;border-radius:3px;width:70%;margin-bottom:6px;"></div>
+            <div style="height:3px;background:{{ tpl.color }}66;border-radius:3px;margin-bottom:3px;"></div>
+            <div style="height:3px;background:#eee;border-radius:3px;"></div>
+          </div>
+          <div class="position-absolute top-0 end-0 m-2"><span class="badge text-white" style="background:{{ tpl.color }};">{{ tpl.name }}</span></div>
+        </div>
+        <div class="card-body text-center p-4">
+          <i class="bi {{ tpl.icon }} fs-2 mb-2" style="color:{{ tpl.color }};"></i>
+          <h5 class="fw-bold">{{ tpl.name }}</h5>
+          <p class="text-muted small">{{ tpl.desc }}</p>
+          <a href="{% url 'create_resume' %}?template={{ tpl.id }}" class="btn w-100 text-white fw-bold" style="background:{{ tpl.color }};border:none;">Use {{ tpl.name }}</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Features -->
+<section class="py-5">
+  <div class="text-center mb-5"><h2 class="fw-bold">Why ResumePro?</h2></div>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card border-0 shadow text-center p-4">
+        <div class="fs-1 mb-2">🤖</div>
+        <h5 class="fw-bold">AI-Powered Content</h5>
+        <p class="text-muted">AI generates professional summaries and skills. You review and edit before saving.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-0 shadow text-center p-4">
+        <div class="fs-1 mb-2">📄</div>
+        <h5 class="fw-bold">PDF Download</h5>
+        <p class="text-muted">Download your resume as a PDF — exactly matching your chosen template style.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card border-0 shadow text-center p-4">
+        <div class="fs-1 mb-2">✅</div>
+        <h5 class="fw-bold">ATS Friendly</h5>
+        <p class="text-muted">Clean formatting that passes Applicant Tracking Systems — no tricks, just good content.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="py-5">
+  <div class="card border-0 shadow p-5" style="background:linear-gradient(135deg,#0d6efd,#6610f2);">
+    <div class="row text-center text-white">
+      <div class="col-4"><h2 class="fw-black display-5">4</h2><p class="opacity-75 mb-0">Templates</p></div>
+      <div class="col-4"><h2 class="fw-black display-5">AI</h2><p class="opacity-75 mb-0">Powered</p></div>
+      <div class="col-4"><h2 class="fw-black display-5">PDF</h2><p class="opacity-75 mb-0">Ready</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

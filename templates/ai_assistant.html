@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% block title %}AI Assistant{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+  <div>
+    <h3 class="fw-bold mb-1"><span style="background:linear-gradient(135deg,#0d6efd,#6610f2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🤖 AI Assistant</span></h3>
+    <p class="text-muted mb-0">AI suggests content → You review & edit → Then save</p>
+  </div>
+  <a href="{% url 'resume_detail' resume.id %}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+</div>
+
+<div class="row g-4">
+
+  <!-- Card 1: Summary -->
+  <div class="col-lg-6">
+    <div class="card ai-card p-4 h-100">
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px;background:#e8f0fe;font-size:22px;">✍️</div>
+        <div><h6 class="fw-bold mb-0">Career Summary</h6><small class="text-muted">AI writes, you edit & save</small></div>
+      </div>
+      <div id="summaryOutput" class="ai-output-box mb-3" style="display:none;"></div>
+      <textarea id="summaryEdit" class="form-control mb-3" rows="5" placeholder="AI generated summary will appear here for you to edit..." style="display:none;"></textarea>
+      <div class="d-flex gap-2 flex-wrap">
+        <button onclick="generateAI('summary')" class="btn btn-primary" id="summaryGenBtn">
+          <i class="bi bi-stars"></i> Generate with AI
+        </button>
+        <button onclick="editField('summary')" class="btn btn-warning" id="summaryEditBtn" style="display:none;">
+          <i class="bi bi-pencil-square"></i> Edit
+        </button>
+        <button onclick="saveField('summary')" class="btn btn-success" id="summarySaveBtn" style="display:none;">
+          <i class="bi bi-save"></i> Save to Resume
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2: Skills -->
+  <div class="col-lg-6">
+    <div class="card ai-card ai-green p-4 h-100">
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px;background:#e8f8f0;font-size:22px;">🛠️</div>
+        <div><h6 class="fw-bold mb-0">Skill Suggestions</h6><small class="text-muted">AI suggests, you pick which to save</small></div>
+      </div>
+      <div id="skillsOutput" style="display:none;" class="mb-3">
+        <div id="skillChips" class="d-flex flex-wrap gap-2 mb-2"></div>
+        <small class="text-muted"><i class="bi bi-info-circle"></i> Edit the comma-separated list below</small>
+        <input type="text" id="skillsEdit" class="form-control mt-2" placeholder="Python, Django, REST API...">
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <button onclick="generateAI('suggest_skills')" class="btn btn-success" id="skillsGenBtn">
+          <i class="bi bi-stars"></i> Suggest Skills
+        </button>
+        <button onclick="saveSkills()" class="btn btn-primary" id="skillsSaveBtn" style="display:none;">
+          <i class="bi bi-save"></i> Save Skills
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3: Full Content -->
+  <div class="col-12">
+    <div class="card p-4" style="border-left:4px solid #fd7e14;">
+      <div class="d-flex align-items-center gap-3 mb-4">
+        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px;background:#fff3e0;font-size:22px;">🚀</div>
+        <div><h6 class="fw-bold mb-0">Full Resume Content Generator</h6><small class="text-muted">Generate summary + skills together, then review before saving</small></div>
+      </div>
+      <div class="row g-3 mb-3">
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Years of Experience</label>
+          <input type="number" id="yearsExp" class="form-control" placeholder="e.g. 2" min="0" max="50">
+        </div>
+        <div class="col-md-8">
+          <label class="form-label fw-semibold">Key Skills (hint for AI)</label>
+          <input type="text" id="skillsHint" class="form-control" placeholder="e.g. Python, Django, MySQL, REST API">
+        </div>
+      </div>
+      <div id="fullOutput" class="row g-3 mb-3" style="display:none;">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Generated Summary — Edit before saving:</label>
+          <textarea id="fullSummaryEdit" class="form-control" rows="5"></textarea>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Generated Skills — Edit before saving:</label>
+          <textarea id="fullSkillsEdit" class="form-control" rows="5" placeholder="One skill per line or comma-separated"></textarea>
+        </div>
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <button onclick="generateFull()" class="btn btn-warning fw-bold" id="fullGenBtn">
+          <i class="bi bi-stars"></i> Generate Full Content
+        </button>
+        <button onclick="saveFull()" class="btn btn-success fw-bold" id="fullSaveBtn" style="display:none;">
+          <i class="bi bi-save"></i> Save Both to Resume
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4: Job Description -->
+  <div class="col-lg-6">
+    <div class="card p-4 h-100" style="border-left:4px solid #6610f2;">
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px;background:#f3e8ff;font-size:22px;">💼</div>
+        <div><h6 class="fw-bold mb-0">Job Description Generator</h6><small class="text-muted">Copy into your experience section</small></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Job Title</label>
+        <input type="text" id="jobTitle" class="form-control" placeholder="e.g. Python Developer">
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Company Name</label>
+        <input type="text" id="companyName" class="form-control" placeholder="e.g. TCS">
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Employment Type</label>
+        <input type="text" id="empType" class="form-control" placeholder="Full-time / Internship">
+      </div>
+      <button onclick="generateJobDesc()" class="btn btn-purple w-100 mb-3" style="background:#6610f2;color:#fff;" id="jobGenBtn">
+        <i class="bi bi-stars"></i> Generate Description
+      </button>
+      <div id="jobResult" style="display:none;">
+        <label class="form-label fw-semibold">Edit before using:</label>
+        <textarea id="jobDescEdit" class="form-control mb-2" rows="5"></textarea>
+        <button onclick="copyText('jobDescEdit')" class="btn btn-outline-primary btn-sm"><i class="bi bi-clipboard"></i> Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 5: Project Description -->
+  <div class="col-lg-6">
+    <div class="card p-4 h-100" style="border-left:4px solid #0dcaf0;">
+      <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width:48px;height:48px;background:#e0f8ff;font-size:22px;">💻</div>
+        <div><h6 class="fw-bold mb-0">Project Description Generator</h6><small class="text-muted">Copy into your project section</small></div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Project Name</label>
+        <input type="text" id="projName" class="form-control" placeholder="e.g. Resume Builder">
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Technologies Used</label>
+        <input type="text" id="projTech" class="form-control" placeholder="e.g. Python, Django, Bootstrap">
+      </div>
+      <button onclick="generateProjDesc()" class="btn btn-info text-white w-100 mb-3" id="projGenBtn">
+        <i class="bi bi-stars"></i> Generate Description
+      </button>
+      <div id="projResult" style="display:none;">
+        <label class="form-label fw-semibold">Edit before using:</label>
+        <textarea id="projDescEdit" class="form-control mb-2" rows="4"></textarea>
+        <button onclick="copyText('projDescEdit')" class="btn btn-outline-info btn-sm"><i class="bi bi-clipboard"></i> Copy</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const RESUME_ID = {{ resume.id }};
+const GENERATE_URL = `/resume/${RESUME_ID}/ai/generate/`;
+const SAVE_URL = `/resume/${RESUME_ID}/ai/save/`;
+
+async function apiPost(url, data) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'X-CSRFToken': getCookie('csrftoken')},
+    body: JSON.stringify(data)
+  });
+  return res.json();
+}
+
+function setLoading(btn, loading) {
+  btn.disabled = loading;
+  btn.innerHTML = loading ? '<span class="spinner-border spinner-border-sm me-2"></span>Generating...' : btn.dataset.orig;
+}
+
+async function generateAI(action) {
+  const btn = document.getElementById(action === 'summary' ? 'summaryGenBtn' : 'skillsGenBtn');
+  btn.dataset.orig = btn.innerHTML;
+  setLoading(btn, true);
+
+  const data = await apiPost(GENERATE_URL, {action});
+  setLoading(btn, false);
+
+  if (!data.success) { alert('AI Error: ' + data.error); return; }
+
+  if (action === 'summary') {
+    document.getElementById('summaryOutput').textContent = data.text;
+    document.getElementById('summaryOutput').style.display = 'block';
+    document.getElementById('summaryEdit').value = data.text;
+    document.getElementById('summaryEditBtn').style.display = 'inline-block';
+    document.getElementById('summarySaveBtn').style.display = 'inline-block';
+    document.getElementById('summaryEdit').style.display = 'none';
+  } else {
+    const skills = data.text.split(',').map(s => s.trim()).filter(Boolean);
+    const chips = document.getElementById('skillChips');
+    chips.innerHTML = skills.map(s => `<span class="badge bg-primary p-2">${s}</span>`).join('');
+    document.getElementById('skillsEdit').value = skills.join(', ');
+    document.getElementById('skillsOutput').style.display = 'block';
+    document.getElementById('skillsSaveBtn').style.display = 'inline-block';
+  }
+}
+
+function editField(field) {
+  if (field === 'summary') {
+    document.getElementById('summaryOutput').style.display = 'none';
+    document.getElementById('summaryEdit').style.display = 'block';
+  }
+}
+
+async function saveField(field) {
+  const btn = document.getElementById('summarySaveBtn');
+  const text = document.getElementById('summaryEdit').value || document.getElementById('summaryOutput').textContent;
+  btn.disabled = true; btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+  const data = await apiPost(SAVE_URL, {field, text});
+  btn.disabled = false; btn.innerHTML = '<i class="bi bi-save"></i> Save to Resume';
+  alert(data.success ? '✅ ' + data.message : '❌ ' + data.error);
+}
+
+async function saveSkills() {
+  const btn = document.getElementById('skillsSaveBtn');
+  const text = document.getElementById('skillsEdit').value;
+  btn.disabled = true; btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+  const data = await apiPost(SAVE_URL, {field: 'skills', text});
+  btn.disabled = false; btn.innerHTML = '<i class="bi bi-save"></i> Save Skills';
+  alert(data.success ? '✅ ' + data.message : '❌ ' + data.error);
+}
+
+async function generateFull() {
+  const btn = document.getElementById('fullGenBtn');
+  btn.dataset.orig = btn.innerHTML; setLoading(btn, true);
+  const data = await apiPost(GENERATE_URL, {
+    action: 'full_content',
+    years: document.getElementById('yearsExp').value,
+    skills: document.getElementById('skillsHint').value,
+  });
+  setLoading(btn, false);
+  if (!data.success) { alert('AI Error: ' + data.error); return; }
+  document.getElementById('fullSummaryEdit').value = data.data.summary || '';
+  document.getElementById('fullSkillsEdit').value = (data.data.skills || []).join('\n');
+  document.getElementById('fullOutput').style.display = 'flex';
+  document.getElementById('fullSaveBtn').style.display = 'inline-block';
+}
+
+async function saveFull() {
+  const summary = document.getElementById('fullSummaryEdit').value;
+  const skillsRaw = document.getElementById('fullSkillsEdit').value;
+  const skills = skillsRaw.split(/[\n,]/).map(s => s.trim()).filter(Boolean).join(', ');
+  const btn = document.getElementById('fullSaveBtn');
+  btn.disabled = true;
+  await apiPost(SAVE_URL, {field: 'summary', text: summary});
+  const r2 = await apiPost(SAVE_URL, {field: 'skills', text: skills});
+  btn.disabled = false;
+  alert('✅ Summary and skills saved! ' + (r2.message || ''));
+}
+
+async function generateJobDesc() {
+  const btn = document.getElementById('jobGenBtn');
+  btn.dataset.orig = btn.innerHTML; setLoading(btn, true);
+  const data = await apiPost(GENERATE_URL, {
+    action: 'job_description',
+    job_title: document.getElementById('jobTitle').value,
+    company_name: document.getElementById('companyName').value,
+    employment_type: document.getElementById('empType').value,
+  });
+  setLoading(btn, false);
+  if (!data.success) { alert('AI Error: ' + data.error); return; }
+  document.getElementById('jobDescEdit').value = data.text;
+  document.getElementById('jobResult').style.display = 'block';
+}
+
+async function generateProjDesc() {
+  const btn = document.getElementById('projGenBtn');
+  btn.dataset.orig = btn.innerHTML; setLoading(btn, true);
+  const data = await apiPost(GENERATE_URL, {
+    action: 'project_description',
+    project_name: document.getElementById('projName').value,
+    technologies: document.getElementById('projTech').value,
+  });
+  setLoading(btn, false);
+  if (!data.success) { alert('AI Error: ' + data.error); return; }
+  document.getElementById('projDescEdit').value = data.text;
+  document.getElementById('projResult').style.display = 'block';
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  el.select(); document.execCommand('copy');
+  alert('Copied to clipboard!');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,269 @@
+/* ============================================================
+   Global
+============================================================ */
+:root {
+  --primary: #0d6efd;
+  --success: #198754;
+  --danger: #dc3545;
+  --dark: #212529;
+  --sidebar-w: 260px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: #f0f2f5;
+  color: #222;
+}
+
+a { text-decoration: none; }
+a:hover { text-decoration: none; }
+
+h1,h2,h3,h4,h5,h6 { font-weight: 700; }
+
+/* ============================================================
+   Navbar
+============================================================ */
+.navbar { box-shadow: 0 2px 20px rgba(0,0,0,.12); }
+.navbar-brand { font-size: 1.25rem; font-weight: 800; letter-spacing: -.5px; }
+
+/* ============================================================
+   Cards
+============================================================ */
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.07);
+  transition: .25s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+.card-header { border-radius: 16px 16px 0 0 !important; }
+
+/* ============================================================
+   Buttons
+============================================================ */
+.btn { border-radius: 10px; font-weight: 600; padding: 10px 22px; transition: .2s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.15); }
+.btn-sm { padding: 6px 14px; font-size: .82rem; }
+.btn-lg { padding: 14px 32px; font-size: 1rem; }
+
+/* ============================================================
+   Forms
+============================================================ */
+.form-control, .form-select {
+  border-radius: 10px;
+  padding: 11px 14px;
+  border: 1.5px solid #e0e0e0;
+  transition: .2s;
+  font-size: .93rem;
+}
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(13,110,253,.12);
+}
+.form-label { font-weight: 600; font-size: .88rem; color: #444; margin-bottom: 5px; }
+textarea.form-control { min-height: 110px; }
+
+/* ============================================================
+   Template Cards (choose template page)
+============================================================ */
+.template-card {
+  cursor: pointer;
+  border-radius: 18px !important;
+  overflow: hidden;
+  border: 2.5px solid transparent !important;
+  transition: .25s;
+}
+.template-card:hover { transform: translateY(-6px) scale(1.02); }
+.template-card.selected { border-color: var(--primary) !important; box-shadow: 0 0 0 4px rgba(13,110,253,.15) !important; }
+
+/* ============================================================
+   Stats Cards
+============================================================ */
+.stat-card { border-radius: 16px; padding: 24px; text-align: center; }
+.stat-card .stat-icon { font-size: 2.2rem; margin-bottom: 8px; }
+.stat-card .stat-num { font-size: 2rem; font-weight: 800; }
+.stat-card .stat-label { font-size: .85rem; color: #666; margin: 0; }
+
+/* ============================================================
+   Admin Sidebar
+============================================================ */
+.admin-layout { display: flex; min-height: 100vh; }
+.admin-sidebar {
+  width: var(--sidebar-w);
+  background: #0f172a;
+  color: #cbd5e1;
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: .3s;
+}
+.admin-sidebar .brand {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+}
+.admin-sidebar .nav-section { padding: 16px 20px 8px; font-size: .7rem; text-transform: uppercase; letter-spacing: 1.5px; color: #475569; }
+.admin-sidebar a.nav-link {
+  color: #94a3b8;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 2px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .9rem;
+  transition: .2s;
+}
+.admin-sidebar a.nav-link:hover, .admin-sidebar a.nav-link.active {
+  background: rgba(255,255,255,.08);
+  color: #fff;
+}
+.admin-sidebar a.nav-link i { font-size: 1rem; width: 20px; }
+.admin-content { margin-left: var(--sidebar-w); flex: 1; padding: 28px; background: #f0f2f5; min-height: 100vh; }
+.admin-topbar { background: #fff; border-radius: 14px; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+
+/* ============================================================
+   Realtime Badge
+============================================================ */
+.realtime-badge { background: #10b981; color: #fff; border-radius: 20px; padding: 4px 14px; font-size: .8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+.realtime-dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* ============================================================
+   Profile
+============================================================ */
+.profile-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); }
+.profile-avatar-placeholder { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg,#0d6efd,#6610f2); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+
+/* ============================================================
+   Resume detail section headers
+============================================================ */
+.section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e8f0fe; padding-bottom: 10px; margin-bottom: 18px; margin-top: 32px; }
+.section-header h5 { color: var(--primary); font-weight: 800; margin: 0; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ============================================================
+   AI Assistant
+============================================================ */
+.ai-output-box { background: #f8faff; border: 1.5px solid #c7d7fe; border-radius: 12px; padding: 16px; min-height: 100px; font-size: .92rem; line-height: 1.7; white-space: pre-wrap; }
+.ai-card { border-left: 4px solid var(--primary); }
+.ai-card.ai-green { border-left-color: var(--success); }
+.ai-card.ai-red { border-left-color: var(--danger); }
+
+/* ============================================================
+   Alert auto-close
+============================================================ */
+.alert { border-radius: 12px; border: none; }
+
+/* ============================================================
+   Password field with a lock icon on the left and a show/hide eye
+   icon on the right, both living INSIDE the input box.
+============================================================ */
+.password-wrapper { position: relative; }
+.password-wrapper input {
+  padding-left: 44px;  /* room for the lock icon */
+  padding-right: 42px; /* room for the eye icon */
+}
+.password-wrapper .lock-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 1.05rem;
+  line-height: 1;
+  pointer-events: none;
+}
+.password-toggle-btn {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  color: #9ca3af;
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  display: none; /* shown via JS once the field has a value */
+}
+.password-toggle-btn:hover { color: var(--primary); }
+
+/* ============================================================
+   Generic left-icon wrapper — same idea as .password-wrapper's
+   lock icon, but for any text field (username, email, name...).
+   Usage:
+     <div class="field-icon-wrap">
+       <i class="bi bi-person field-icon"></i>
+       <input class="form-control" ...>
+     </div>
+============================================================ */
+.field-icon-wrap { position: relative; }
+.field-icon-wrap input {
+  padding-left: 44px; /* room for the icon */
+}
+.field-icon-wrap .field-icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 1.05rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ============================================================
+   Auth pages (login, signup, change password) — shared card look
+============================================================ */
+.auth-shell {
+  /* background: #5b92f7; */
+  min-height: calc(100vh - 300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  margin: -1.5rem -12px 0;
+  border-radius: 16px;
+}
+.auth-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 24px;
+  padding: 40px 36px 36px;
+  box-shadow: 0 10px 40px rgba(30,20,90,.12);
+}
+.auth-card.auth-card-wide { max-width: 560px; }
+.auth-brand { text-align: center; font-size: 30px; font-weight: 800; color: #111827; margin-bottom: 26px; }
+.auth-brand span { color: #5b4bf5; }
+.auth-card h1 { text-align: center; font-size: 30px; font-weight: 800; color: #111827; margin-bottom: 8px; }
+.auth-card .subtitle { text-align: center; color: #6b7280; font-size: 15px; margin-bottom: 26px; }
+.auth-card .form-label { font-weight: 700; color: #111827; font-size: 14px; }
+.auth-card .form-control {
+  height: 50px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+}
+.auth-card .form-control:focus {
+  border-color: #e5e7eb;
+  box-shadow: none;
+}
+.auth-card .btn-auth {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #2f5cf5, #7b2ff7);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+.auth-card .btn-auth:hover { opacity: .92; color: #fff; }

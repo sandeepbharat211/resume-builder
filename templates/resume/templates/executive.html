@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ resume.full_name }} - Resume</title>
+<link rel="icon" type="image/png" href="{% static 'images/ResumeProLogo.png' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+  body { background: #1a1a2e; font-family: 'Georgia', serif; }
+  .resume-wrapper { max-width: 880px; margin: 30px auto; background: #fff; border-radius: 0; overflow: hidden; box-shadow: 0 12px 60px rgba(0,0,0,0.4); }
+  .resume-header { background: #0f0f23; color: #fff; padding: 50px 60px 36px; border-bottom: 4px solid #c9a84c; }
+  .resume-header h1 { font-size: 2.6rem; font-weight: 700; letter-spacing: 2px; color: #fff; }
+  .resume-header .profession { color: #c9a84c; font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px; }
+  .gold { color: #c9a84c; }
+  .profile-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid #c9a84c; }
+  .contact-bar { background: #1a1a2e; color: #bbb; font-size: 0.82rem; padding: 12px 60px; display: flex; gap: 24px; flex-wrap: wrap; border-bottom: 1px solid #333; }
+  .contact-bar i { color: #c9a84c; margin-right: 4px; }
+  .resume-body { padding: 40px 60px; }
+  .section-title { font-family: 'Georgia', serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: #0f0f23; border-bottom: 2px solid #c9a84c; padding-bottom: 6px; margin-top: 30px; margin-bottom: 16px; }
+  .timeline-item { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #f0e8d4; }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-item .title { font-weight: 700; font-size: 1rem; color: #0f0f23; }
+  .timeline-item .sub { color: #c9a84c; font-size: 0.88rem; font-style: italic; }
+  .timeline-item .date { color: #888; font-size: 0.8rem; }
+  .timeline-item p { font-size: 0.88rem; color: #555; margin-top: 6px; }
+  .skill-pill { border: 1px solid #c9a84c; color: #0f0f23; border-radius: 3px; padding: 3px 12px; font-size: 0.8rem; display: inline-block; margin: 3px; background: #fffaf0; }
+  .lang-item { display: inline-block; border: 1px solid #ddd; border-radius: 4px; padding: 6px 14px; margin: 4px; font-size: 0.82rem; }
+  .hobby-tag { color: #555; font-size: 0.85rem; }
+  .hobby-tag::before { content: '◆ '; color: #c9a84c; }
+  {% if pdf_mode %}
+  /* ---- PDF-only overrides: force A4, single page, compact spacing ---- */
+  @page { size: A4; margin: 8mm; }
+  body { background: #fff; font-size: 0.85rem; }
+  .resume-wrapper { max-width: 100%; margin: 0; border-radius: 0; box-shadow: none; }
+  .resume-header { padding: 24px 30px 18px; }
+  .contact-bar { padding: 10px 30px; }
+  .resume-body { padding: 20px 30px; }
+  .section-title { margin-top: 16px; margin-bottom: 8px; }
+  .timeline-item { margin-bottom: 10px; padding-bottom: 8px; }
+  {% endif %}
+</style>
+</head>
+<body>
+{% include 'resume/templates/_toolbar.html' %}
+<div class="resume-wrapper">
+  <div class="resume-header">
+    <div class="d-flex align-items-center gap-4">
+      {% if resume.profile_image %}<img src="{{ resume.profile_image.url }}" class="profile-img">{% endif %}
+      <div>
+        <h1>{{ resume.full_name }}</h1>
+        <div class="profession">{{ resume.profession }}</div>
+        {% if resume.linkedin or resume.github %}
+        <div class="mt-2" style="font-size:0.82rem;color:#aaa;">
+          {% if resume.linkedin %}<span class="me-3"><i class="bi bi-linkedin gold"></i> LinkedIn</span>{% endif %}
+          {% if resume.github %}<span><i class="bi bi-github gold"></i> GitHub</span>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="contact-bar">
+    <span><i class="bi bi-envelope"></i>{{ resume.email }}</span>
+    <span><i class="bi bi-telephone"></i>{{ resume.phone }}</span>
+    <span><i class="bi bi-geo-alt"></i>{{ resume.city }}, {{ resume.country }}</span>
+    {% if resume.date_of_birth %}<span><i class="bi bi-calendar"></i>{{ resume.date_of_birth }}</span>{% endif %}
+  </div>
+  <div class="resume-body">
+    {% if resume.summary %}
+    <div class="section-title">Executive Summary</div>
+    <p style="font-size:0.93rem;color:#444;line-height:1.8;">{{ resume.summary }}</p>
+    {% endif %}
+
+    {% if resume.skills.all %}
+    <div class="section-title">Core Competencies</div>
+    {% for skill in resume.skills.all %}
+    <span class="skill-pill">{{ skill.skill_name }}</span>
+    {% endfor %}
+    {% endif %}
+
+    {% if resume.educations.all %}
+    <div class="section-title">Education</div>
+    {% for edu in resume.educations.all %}
+    <div class="timeline-item">
+      <div class="title">{{ edu.degree }}{% if edu.field_of_study %} — {{ edu.field_of_study }}{% endif %}</div>
+      <div class="sub">{{ edu.institution }}</div>
+      <div class="date">{{ edu.start_date }} – {% if edu.currently_studying %}Present{% else %}{{ edu.end_date }}{% endif %}{% if edu.grade %} | {{ edu.grade }}{% endif %}</div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if resume.experiences.all %}
+    <div class="section-title">Professional Experience</div>
+    {% for exp in resume.experiences.all %}
+    <div class="timeline-item">
+      <div class="title">{{ exp.job_title }}</div>
+      <div class="sub">{{ exp.company_name }}{% if exp.location %}, {{ exp.location }}{% endif %}</div>
+      <div class="date">{{ exp.start_date }} – {% if exp.currently_working %}Present{% else %}{{ exp.end_date }}{% endif %}{% if exp.employment_type %} | {{ exp.employment_type }}{% endif %}</div>
+      <p>{{ exp.description }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if resume.projects.all %}
+    <div class="section-title">Key Projects</div>
+    {% for proj in resume.projects.all %}
+    <div class="timeline-item">
+      <div class="title">{{ proj.project_name }}</div>
+      <div class="sub">{{ proj.technologies }}</div>
+      <p>{{ proj.description }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if resume.certificates.all %}
+    <div class="section-title">Certifications</div>
+    {% for cert in resume.certificates.all %}
+    <div class="timeline-item">
+      <div class="title">{{ cert.certificate_name }}</div>
+      <div class="sub">{{ cert.organization }}{% if cert.issue_date %} | {{ cert.issue_date }}{% endif %}</div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="row">
+      {% if resume.languages.all %}
+      <div class="col-md-6">
+        <div class="section-title">Languages</div>
+        {% for lang in resume.languages.all %}
+        <span class="lang-item"><strong>{{ lang.language }}</strong> <small class="text-muted">{% if lang.can_read %}R {% endif %}{% if lang.can_write %}W {% endif %}{% if lang.can_speak %}S{% endif %}</small></span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if resume.hobbies.all %}
+      <div class="col-md-6">
+        <div class="section-title">Interests</div>
+        {% for hobby in resume.hobbies.all %}
+        <div class="hobby-tag">{{ hobby.hobby_name }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}My Resumes{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+  <div><h4 class="fw-bold mb-0">My Resumes</h4><p class="text-muted mb-0">{{ resumes|length }} resume(s)</p></div>
+  <a href="{% url 'choose_template' %}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>New Resume</a>
+</div>
+<div class="row mb-4"><div class="col-md-5">
+  <input type="text" id="searchInput" class="form-control" placeholder="🔍 Search resumes...">
+</div></div>
+<div class="row g-4" id="resumeContainer">
+  {% for r in resumes %}
+  <div class="col-lg-4 col-md-6 resume-card">
+    <div class="card border-0 shadow h-100">
+      <div style="height:4px;background:{{ r.get_template_color }};border-radius:16px 16px 0 0;"></div>
+      <div class="card-body text-center p-4">
+        {% if r.profile_image %}<img src="{{ r.profile_image.url }}" class="rounded-circle mb-3" width="90" height="90" style="object-fit:cover;border:3px solid {{ r.get_template_color }};">
+        {% else %}<div class="rounded-circle text-white d-flex align-items-center justify-content-center fw-bold mx-auto mb-3" style="width:90px;height:90px;background:{{ r.get_template_color }};font-size:36px;">{{ r.full_name|first }}</div>{% endif %}
+        <h6 class="fw-bold">{{ r.full_name }}</h6>
+        <p class="text-muted small mb-1">{{ r.profession }}</p>
+        <span class="badge text-white text-capitalize mb-3" style="background:{{ r.get_template_color }};">{{ r.template }}</span>
+        <div class="d-grid gap-2">
+          <a href="{% url 'resume_detail' r.id %}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i> View</a>
+          <div class="d-flex gap-2">
+            <a href="{% url 'preview_resume' r.id %}" class="btn btn-info btn-sm text-white flex-fill"><i class="bi bi-eye-fill"></i> Preview</a>
+            <a href="{% url 'download_resume' r.id %}" class="btn btn-success btn-sm flex-fill"><i class="bi bi-file-earmark-pdf"></i> PDF</a>
+          </div>
+          <a href="{% url 'delete_resume' r.id %}" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i> Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12"><div class="card border-0 shadow text-center p-5"><div style="font-size:4rem;">📄</div><h4 class="fw-bold mt-3">No Resumes Yet</h4><a href="{% url 'choose_template' %}" class="btn btn-primary mt-2">Create Now</a></div></div>
+  {% endfor %}
+</div>
+<script>
+document.getElementById('searchInput').addEventListener('keyup', function() {
+  const v = this.value.toLowerCase();
+  document.querySelectorAll('.resume-card').forEach(c => { c.style.display = c.innerText.toLowerCase().includes(v) ? '' : 'none'; });
+});
+</script>
+{% endblock %}

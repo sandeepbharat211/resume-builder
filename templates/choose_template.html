@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Choose Template{% endblock %}
+{% block content %}
+<div class="text-center mb-5">
+  <h2 class="fw-bold">🎨 Choose Your Resume Template</h2>
+  <p class="text-muted">Pick a style. You can change it anytime after creating.</p>
+</div>
+
+<!-- Template Grid -->
+<div class="row g-4">
+  {% for tpl in templates %}
+  <div class="col-md-6 col-lg-3">
+    <div class="card template-card border-0 shadow-lg h-100" id="tpl-{{ tpl.id }}">
+      <div style="height:200px;background:{{ tpl.bg }};display:flex;align-items:center;justify-content:center;position:relative;">
+        <div style="width:130px;background:#fff;border-radius:10px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.15);">
+          <div style="width:32px;height:32px;border-radius:50%;background:{{ tpl.color }};margin:0 auto 10px;"></div>
+          <div style="height:6px;background:{{ tpl.color }};border-radius:3px;margin-bottom:5px;"></div>
+          <div style="height:4px;background:#eee;border-radius:3px;margin-bottom:4px;"></div>
+          <div style="height:4px;background:#eee;border-radius:3px;width:75%;margin-bottom:8px;"></div>
+          <div style="height:3px;background:{{ tpl.color }}44;margin-bottom:3px;border-radius:3px;"></div>
+          <div style="height:3px;background:#eee;border-radius:3px;margin-bottom:3px;"></div>
+          <div style="height:3px;background:#eee;border-radius:3px;width:80%;"></div>
+        </div>
+        <div class="position-absolute top-0 start-0 m-2">
+          <span class="badge text-white" style="background:{{ tpl.color }};">{{ tpl.name }}</span>
+        </div>
+      </div>
+      <div class="card-body text-center p-4">
+        <i class="bi {{ tpl.icon }} fs-2 mb-2" style="color:{{ tpl.color }};display:block;"></i>
+        <h5 class="fw-bold">{{ tpl.name }}</h5>
+        <p class="text-muted small">{{ tpl.desc }}</p>
+        <a href="{% url 'create_resume' %}?template={{ tpl.id }}" class="btn w-100 text-white fw-bold" style="background:{{ tpl.color }};border:none;">
+          Use {{ tpl.name }} →
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}My Profile{% endblock %}
+{% block content %}
+<div class="row g-4">
+  <div class="col-lg-4">
+    <div class="card p-4 text-center">
+      {% if profile.photo %}
+      <img src="{{ profile.photo.url }}" class="profile-avatar mx-auto mb-3">
+      {% else %}
+      <div class="profile-avatar-placeholder mx-auto mb-3"><i class="bi bi-person-fill"></i></div>
+      {% endif %}
+      <h4 class="fw-bold">{{ user.get_full_name|default:user.username }}</h4>
+      <p class="text-muted">{{ user.email }}</p>
+      {% if profile.bio %}<p class="small text-muted">{{ profile.bio }}</p>{% endif %}
+      <div class="d-flex justify-content-center gap-2 mt-2">
+        {% if profile.linkedin %}<a href="{{ profile.linkedin }}" target="_blank" class="btn btn-outline-primary btn-sm"><i class="bi bi-linkedin"></i></a>{% endif %}
+        {% if profile.github %}<a href="{{ profile.github }}" target="_blank" class="btn btn-outline-dark btn-sm"><i class="bi bi-github"></i></a>{% endif %}
+        {% if profile.website %}<a href="{{ profile.website }}" target="_blank" class="btn btn-outline-info btn-sm"><i class="bi bi-globe"></i></a>{% endif %}
+      </div>
+      <a href="{% url 'edit_profile' %}" class="btn btn-primary mt-3 w-100"><i class="bi bi-pencil-square"></i> Edit Profile</a>
+      <a href="{% url 'change_password' %}" class="btn btn-outline-secondary mt-2 w-100"><i class="bi bi-key-fill"></i> Change Password</a>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="card text-center p-3" style="background:linear-gradient(135deg,#0d6efd,#6610f2);color:#fff;">
+          <h3 class="fw-bold">{{ resumes_count }}</h3><small>Resumes</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card text-center p-3" style="background:linear-gradient(135deg,#198754,#20c997);color:#fff;">
+          <h3 class="fw-bold">{{ projects_count }}</h3><small>Projects</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card text-center p-3" style="background:linear-gradient(135deg,#fd7e14,#dc3545);color:#fff;">
+          <h3 class="fw-bold">{{ skills_count }}</h3><small>Skills</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card text-center p-3" style="background:linear-gradient(135deg,#0f172a,#334155);color:#fff;">
+          <h3 class="fw-bold">{{ certificates_count }}</h3><small>Certs</small>
+        </div>
+      </div>
+    </div>
+    <div class="card p-4 mb-4">
+      <h6 class="fw-bold mb-3">Account Information</h6>
+      <table class="table table-bordered table-sm">
+        <tr><th>Username</th><td>{{ user.username }}</td></tr>
+        <tr><th>Email</th><td>{{ user.email }}</td></tr>
+        <tr><th>Phone</th><td>{{ profile.phone|default:"-" }}</td></tr>
+        <tr><th>City</th><td>{{ profile.city|default:"-" }}</td></tr>
+        <tr><th>Member Since</th><td>{{ user.date_joined|date:"d M Y" }}</td></tr>
+        <tr><th>Last Login</th><td>{{ user.last_login|date:"d M Y H:i" }}</td></tr>
+      </table>
+    </div>
+    <div class="card p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h6 class="fw-bold mb-0">My Resumes</h6>
+        <a href="{% url 'choose_template' %}" class="btn btn-sm btn-primary">+ New</a>
+      </div>
+      {% for r in resumes %}
+      <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+        <div>
+          <span class="fw-semibold">{{ r.full_name }}</span>
+          <span class="badge bg-primary ms-2 text-capitalize">{{ r.template }}</span>
+        </div>
+        <div class="d-flex gap-2">
+          <a href="{% url 'resume_detail' r.id %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+          <a href="{% url 'download_resume' r.id %}" class="btn btn-sm btn-outline-success"><i class="bi bi-file-earmark-pdf"></i></a>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-muted">No resumes yet. <a href="{% url 'choose_template' %}">Create one!</a></p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

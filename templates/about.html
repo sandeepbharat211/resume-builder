@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}About{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-lg rounded-4">
+      <div class="card-body p-4 p-lg-5">
+        <h2 class="fw-bold mb-4"><i class="bi bi-info-circle-fill text-primary"></i> About ResumePro</h2>
+
+        <p class="text-muted">
+          ResumePro is a free resume-builder web app that lets you create a
+          polished, professional resume in minutes. Pick from 4 designed
+          templates, fill in your details, adjust your photo, get AI-powered
+          writing suggestions for your summary and job descriptions, and
+          download a pixel-accurate PDF whenever you're ready.
+        </p>
+
+        <h5 class="fw-bold mt-4">Features</h5>
+        <ul class="text-muted">
+          <li>4 resume templates: Modern, Professional, Creative, Executive</li>
+          <li>Pixel-accurate PDF download — matches the on-screen preview exactly</li>
+          <li>Crop / zoom / adjust your profile photo before uploading</li>
+          <li>AI Assistant (Gemini 2.5 Flash) for summaries, skills and job descriptions</li>
+          <li>One-click Print button</li>
+        </ul>
+
+        <hr class="my-4">
+
+        <h5 class="fw-bold">Developed By</h5>
+        <p class="text-muted mb-0">
+          This project was built and is maintained by <strong>Sandeep Bharat</strong>.
+        </p>
+        <p class="text-muted">
+          Have feedback or found a bug? Visit the
+          <a href="{% url 'contact' %}">Contact page</a> to get in touch.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

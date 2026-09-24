@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}Help{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-lg rounded-4">
+      <div class="card-body p-4 p-lg-5">
+        <h2 class="fw-bold mb-4"><i class="bi bi-question-circle-fill text-primary"></i> Help &amp; FAQ</h2>
+
+        <div class="accordion" id="helpAccordion">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#h1">
+                How do I create a resume?
+              </button>
+            </h2>
+            <div id="h1" class="accordion-collapse collapse show" data-bs-parent="#helpAccordion">
+              <div class="accordion-body text-muted">
+                Click <strong>"New Resume"</strong> from the top navigation, choose a
+                template, fill in your details section by section (Education,
+                Experience, Skills, etc.), then preview or download the PDF
+                whenever you're ready.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#h2">
+                Can I change my template after creating a resume?
+              </button>
+            </h2>
+            <div id="h2" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+              <div class="accordion-body text-muted">
+                Yes. Open your resume and click <strong>"Change Template"</strong> --
+                all your entered details carry over automatically to the new style.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#h3">
+                Why does my downloaded PDF not match the preview?
+              </button>
+            </h2>
+            <div id="h3" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+              <div class="accordion-body text-muted">
+                It should always match exactly, since both use the same
+                template. If you notice a mismatch, try a hard refresh
+                (Ctrl+Shift+R) and download again.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#h4">
+                How do I adjust my profile photo?
+              </button>
+            </h2>
+            <div id="h4" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+              <div class="accordion-body text-muted">
+                When you choose a photo to upload, a crop/zoom window opens
+                automatically -- drag to move, scroll or use the +/- buttons
+                to zoom, then click "Apply".
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#h5">
+                Is my data safe?
+              </button>
+            </h2>
+            <div id="h5" class="accordion-collapse collapse" data-bs-parent="#helpAccordion">
+              <div class="accordion-body text-muted">
+                Your resumes are private to your account and only visible
+                to you after logging in.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="text-muted mt-4 mb-0">
+          Still stuck? Head over to the <a href="{% url 'contact' %}">Contact page</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

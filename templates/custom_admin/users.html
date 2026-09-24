@@ -1,0 +1,66 @@
+{% extends 'custom_admin/base.html' %}
+{% block title %}Users{% endblock %}
+{% block page_title %}User Management{% endblock %}
+
+{% block content %}
+<div class="card p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <h6 class="fw-bold mb-0">All Users ({{ users.count }})</h6>
+    <form method="GET" class="d-flex gap-2">
+      <input type="text" name="q" class="form-control" placeholder="Search username or email..." value="{{ search }}" style="width:260px;">
+      <button class="btn btn-primary">Search</button>
+      {% if search %}<a href="{% url 'admin_users' %}" class="btn btn-secondary">Clear</a>{% endif %}
+    </form>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th><th>User</th><th>Email</th><th>Joined</th><th>Last Login</th><th>Resumes</th><th>Status</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in users %}
+        <tr>
+          <td class="text-muted small">{{ forloop.counter }}</td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              {% if u.profile.photo %}
+              <img src="{{ u.profile.photo.url }}" width="36" height="36" class="rounded-circle" style="object-fit:cover;">
+              {% else %}
+              <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width:36px;height:36px;font-size:14px;"><i class="bi bi-person-fill"></i></div>
+              {% endif %}
+              <div>
+                <div class="fw-semibold">{{ u.username }}</div>
+                <small class="text-muted">{{ u.first_name }} {{ u.last_name }}</small>
+              </div>
+            </div>
+          </td>
+          <td><small>{{ u.email }}</small></td>
+          <td><small>{{ u.date_joined|date:"d M Y" }}</small></td>
+          <td><small>{{ u.last_login|date:"d M Y H:i"|default:"Never" }}</small></td>
+          <td><span class="badge bg-primary">{{ u.resumes.count }}</span></td>
+          <td>
+            {% if u.is_staff %}<span class="badge bg-warning text-dark">Admin</span>
+            {% elif u.is_active %}<span class="badge bg-success">Active</span>
+            {% else %}<span class="badge bg-danger">Inactive</span>{% endif %}
+          </td>
+          <td>
+            <div class="d-flex gap-1">
+              <a href="{% url 'admin_user_detail' u.id %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+              {% if not u.is_staff %}
+              <a href="{% url 'admin_toggle_user' u.id %}" class="btn btn-sm {% if u.is_active %}btn-outline-danger{% else %}btn-outline-success{% endif %}">
+                {% if u.is_active %}<i class="bi bi-slash-circle"></i>{% else %}<i class="bi bi-check-circle"></i>{% endif %}
+              </a>
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8" class="text-center text-muted py-4">No users found</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Change Template{% endblock %}
+{% block content %}
+<div class="text-center mb-5">
+  <h3 class="fw-bold">🎨 Change Template</h3>
+  <p class="text-muted">Resume: <strong>{{ resume.full_name }}</strong> — Current: <strong>{{ resume.template|title }}</strong></p>
+</div>
+<form method="POST">
+  {% csrf_token %}
+  <div class="row g-4 mb-4">
+    {% for tpl in templates %}
+    <div class="col-md-6 col-lg-3">
+      <label style="cursor:pointer;display:block;">
+        <input type="radio" name="template" value="{{ tpl.id }}" class="d-none tpl-radio" {% if resume.template == tpl.id %}checked{% endif %}>
+        <div class="card template-card border-0 shadow {% if resume.template == tpl.id %}selected{% endif %}" id="tcard-{{ tpl.id }}">
+          <div style="height:160px;background:{{ tpl.bg }};display:flex;align-items:center;justify-content:center;position:relative;">
+            <div style="width:110px;background:#fff;border-radius:8px;padding:12px;box-shadow:0 4px 16px rgba(0,0,0,.12);">
+              <div style="width:26px;height:26px;border-radius:50%;background:{{ tpl.color }};margin:0 auto 6px;"></div>
+              <div style="height:4px;background:{{ tpl.color }};border-radius:3px;margin-bottom:4px;"></div>
+              <div style="height:3px;background:#eee;border-radius:3px;margin-bottom:3px;"></div>
+              <div style="height:3px;background:#eee;border-radius:3px;width:70%;"></div>
+            </div>
+            {% if resume.template == tpl.id %}<div class="position-absolute top-0 start-0 m-2"><span class="badge bg-success">Current</span></div>{% endif %}
+          </div>
+          <div class="card-body text-center p-3">
+            <i class="bi {{ tpl.icon }} fs-3 mb-1" style="color:{{ tpl.color }};display:block;"></i>
+            <h6 class="fw-bold mb-0">{{ tpl.name }}</h6>
+            <small class="text-muted">{{ tpl.desc }}</small>
+          </div>
+        </div>
+      </label>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="text-center d-flex justify-content-center gap-3">
+    <button type="submit" class="btn btn-primary btn-lg px-5">Apply Template</button>
+    <a href="{% url 'resume_detail' resume.id %}" class="btn btn-secondary btn-lg px-5">Cancel</a>
+  </div>
+</form>
+<script>
+document.querySelectorAll('.tpl-radio').forEach(r => {
+  r.addEventListener('change', function() {
+    document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('tcard-' + this.value).classList.add('selected');
+  });
+});
+</script>
+{% endblock %}
