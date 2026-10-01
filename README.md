@@ -174,7 +174,7 @@ The screenshots below are from the actual ResumePro application.
 
 The landing page introduces ResumePro, displays the available professional templates and provides access to the main resume-building workflow.
 
-![ResumePro Home Page](docs/screenshots/01-home.png)
+![ResumePro Home Page](01-home.png)
 
 ---
 
@@ -182,7 +182,7 @@ The landing page introduces ResumePro, displays the available professional templ
 
 New users can create a ResumePro account through the registration page.
 
-![ResumePro Sign Up](docs/screenshots/02-signup.png)
+![ResumePro Sign Up](02-signup.png)
 
 ---
 
@@ -190,7 +190,7 @@ New users can create a ResumePro account through the registration page.
 
 Existing users can securely sign in and access their resumes and dashboard.
 
-![ResumePro Login](docs/screenshots/03-login.png)
+![ResumePro Login](03-login.png)
 
 ---
 
@@ -198,7 +198,7 @@ Existing users can securely sign in and access their resumes and dashboard.
 
 The dashboard gives users an overview of their resumes and resume-related information, with quick actions for creating and managing resumes.
 
-![ResumePro Dashboard](docs/screenshots/04-dashboard.png)
+![ResumePro Dashboard](04-dashboard.png)
 
 ---
 
@@ -206,7 +206,7 @@ The dashboard gives users an overview of their resumes and resume-related inform
 
 The resume creation interface collects the information required to build a complete professional resume.
 
-![Create Resume](docs/screenshots/05-create-resume.png)
+![Create Resume](05-create-resume.png)
 
 ---
 
@@ -214,7 +214,7 @@ The resume creation interface collects the information required to build a compl
 
 Users can view and manage their saved resume information from the application.
 
-![Resume View](docs/screenshots/06-resume-view.png)
+![Resume View](06-resume-view.png)
 
 ---
 
@@ -222,7 +222,7 @@ Users can view and manage their saved resume information from the application.
 
 The selected resume template renders the user's information into a professional resume layout.
 
-![Resume Preview](docs/screenshots/07-resume-preview.png)
+![Resume Preview](07-resume-preview.png)
 
 ---
 
@@ -230,7 +230,7 @@ The selected resume template renders the user's information into a professional 
 
 The Gemini-powered AI Assistant helps generate professional resume content such as summaries, skills, job descriptions and project descriptions.
 
-![Gemini AI Assistant](docs/screenshots/08-ai-assistant.png)
+![Gemini AI Assistant](08-ai-assistant.png)
 
 ---
 
@@ -238,7 +238,7 @@ The Gemini-powered AI Assistant helps generate professional resume content such 
 
 Users can manage account information, profile details and their saved resumes from the profile area.
 
-![User Profile](docs/screenshots/09-profile.png)
+![User Profile](09-profile.png)
 
 ---
 
@@ -246,7 +246,7 @@ Users can manage account information, profile details and their saved resumes fr
 
 The About page explains the purpose and major capabilities of the ResumePro application.
 
-![About ResumePro](docs/screenshots/10-about.png)
+![About ResumePro](10-about.png)
 
 ---
 
@@ -254,7 +254,7 @@ The About page explains the purpose and major capabilities of the ResumePro appl
 
 Staff users can monitor application activity through a dedicated analytics dashboard.
 
-![Admin Dashboard](docs/screenshots/11-admin-dashboard.png)
+![Admin Dashboard](11-admin-dashboard.png)
 
 ---
 
@@ -262,7 +262,7 @@ Staff users can monitor application activity through a dedicated analytics dashb
 
 Staff users can inspect registered users and their related resume information.
 
-![User Management](docs/screenshots/12-user-management.png)
+![User Management](12-user-management.png)
 
 ---
 
@@ -270,7 +270,7 @@ Staff users can inspect registered users and their related resume information.
 
 The custom admin area provides an overview of resumes created in the application.
 
-![All Resumes](docs/screenshots/13-all-resumes.png)
+![All Resumes](13-all-resumes.png)
 
 ---
 
@@ -278,7 +278,7 @@ The custom admin area provides an overview of resumes created in the application
 
 The standard Django administration interface is also available for model-level management.
 
-![Django Admin](docs/screenshots/14-django-admin.png)
+![Django Admin](14-django-admin.png)
 
 ---
 
