@@ -1,223 +1,106 @@
 # 📄 ResumePro — AI-Powered Resume Builder
 
-> A full-stack **Django Resume Builder** that helps users create, manage, preview, customize, and download professional resumes with multiple templates and an integrated **Google Gemini AI Assistant**.
+<p align="center">
+  <img src="ResumeProLogo.png" alt="ResumePro Logo" width="180">
+</p>
 
-[![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)](https://www.python.org/)
-[![Django](https://img.shields.io/badge/Django-4.2%2B-092E20?logo=django)](https://www.djangoproject.com/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?logo=bootstrap)](https://getbootstrap.com/)
-[![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?logo=mysql)](https://www.mysql.com/)
-[![Gemini](https://img.shields.io/badge/Google%20Gemini-AI-4285F4?logo=google)](https://ai.google.dev/)
-[![WeasyPrint](https://img.shields.io/badge/WeasyPrint-PDF-red)](https://weasyprint.org/)
+<p align="center">
+  <strong>Create, customize, preview and download professional resumes with an integrated Gemini AI Assistant.</strong>
+</p>
 
----
+<p align="center">
+  <a href="https://resume-builder-at2p.onrender.com/">🌐 Live Demo</a> ·
+  <a href="https://github.com/sandeepbharat211/resume-builder">💻 GitHub Repository</a>
+</p>
 
-## 🌐 Project
-
-**ResumePro** is designed to make professional resume creation simple and structured.
-
-A user can:
-
-1. Create an account
-2. Build one or more resumes
-3. Choose from four resume templates
-4. Add personal information
-5. Add education, experience, projects, skills, certificates, languages, and hobbies
-6. Upload and crop a profile/resume photo
-7. Use Gemini AI to generate or improve resume content
-8. Preview the resume
-9. Print the resume directly from the browser
-10. Download the same resume as a PDF
-
-The application also includes a **staff-only custom admin dashboard** for monitoring users, resumes, visitors, template usage, and recent activity.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Django-6.x-092E20?logo=django&logoColor=white" alt="Django">
+  <img src="https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white" alt="Bootstrap">
+  <img src="https://img.shields.io/badge/MySQL-Database-4479A1?logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Google%20Gemini-AI-4285F4?logo=google&logoColor=white" alt="Gemini">
+  <img src="https://img.shields.io/badge/WeasyPrint-PDF-B22222" alt="WeasyPrint">
+  <img src="https://img.shields.io/badge/Deployment-Render-46E3B7?logo=render&logoColor=black" alt="Render">
+</p>
 
 ---
 
-## ✨ Main Features
+## 🌐 Live Demo
 
-### 👤 User Accounts
+**Live Application:**  
+https://resume-builder-at2p.onrender.com/
 
-- User registration
-- Login / logout
-- Password change
-- User profile
+**GitHub Repository:**  
+https://github.com/sandeepbharat211/resume-builder/
+
+> The live application is deployed on Render. Free hosting may take a short time to wake up after inactivity.
+
+---
+
+# 📌 About the Project
+
+**ResumePro** is a full-stack Django web application for creating professional resumes online.
+
+The application gives users a complete resume-building workflow: users can create an account, build and manage resumes, add detailed career information, select a resume design, use AI to generate or improve content, preview the result, and generate a PDF.
+
+The project also contains a custom staff/admin dashboard with user, resume, template and visitor analytics.
+
+---
+
+# ✨ Key Features
+
+## 👤 User Authentication & Profile
+
+- User registration and login
+- Logout and password change
+- User profile management
 - Profile photo upload
-- Photo crop/zoom/move support
-- Bio and contact information
-- LinkedIn, GitHub, and website links
-- User-specific resume access
+- Photo crop/zoom functionality
+- Contact information
+- Bio/about information
+- LinkedIn, GitHub and website links
+- User-specific resume management
 
-### 📄 Resume Builder
+## 📝 Complete Resume Builder
 
-Each user can create and manage multiple resumes.
+A resume can contain:
 
-Resume information includes:
-
-- Full name
-- Profession
-- Profile photo
-- Email
-- Phone number
-- Date of birth
-- Gender
-- Address
-- City
-- State
-- Country
-- Postal code
+- Personal information
 - Professional summary
-- LinkedIn
-- GitHub
-- Portfolio
-- Website
+- Education
+- Work experience
+- Projects
+- Skills
+- Certificates
+- Languages
+- Hobbies
+- Profile/resume photo
+- Social and portfolio links
 
-### 🎓 Education
+## 🎨 Multiple Resume Templates
 
-Users can add multiple education records:
+ResumePro provides four resume designs:
 
-- Institution
-- Degree
-- Field of study
-- Grade / CGPA / percentage
-- Start date
-- End date
-- Currently studying status
-- Description
+- Modern
+- Professional
+- Creative
+- Executive
 
-### 💼 Work Experience
+Users can choose a template and change the design later without rebuilding the resume.
 
-Users can add multiple experience records:
+## 🤖 Gemini AI Assistant
 
-- Company name
-- Job title
-- Employment type
-- Location
-- Start date
-- End date
-- Currently working status
-- Job description
+The integrated AI Assistant helps users create resume content.
 
-### 💻 Projects
+It supports tasks such as:
 
-Each resume can contain multiple projects:
+- Career summary generation
+- Skill suggestions
+- Job description generation
+- Project description generation
+- Full resume content assistance
 
-- Project name
-- Technologies used
-- Project URL
-- GitHub URL
-- Start date
-- End date
-- Project description
-
-### 🛠️ Skills
-
-Skills support four proficiency levels:
-
-- Beginner
-- Intermediate
-- Advanced
-- Expert
-
-The application also converts the selected level into a visual percentage for the resume template.
-
-### 🏆 Certificates
-
-Users can add:
-
-- Certificate name
-- Issuing organization
-- Issue date
-- Credential URL
-
-### 🌐 Languages
-
-For each language, users can specify:
-
-- Reading ability
-- Writing ability
-- Speaking ability
-
-### 🎯 Hobbies
-
-Users can add multiple hobbies to their resume.
-
----
-
-# 🎨 Resume Templates
-
-ResumePro currently includes **four resume templates**:
-
-| Template | Description |
-|---|---|
-| 🟦 Modern | Clean and contemporary resume layout |
-| 🟩 Professional | Traditional professional resume style |
-| 🟥 Creative | More visually expressive design |
-| ⬛ Executive | Minimal and executive-oriented layout |
-
-The selected template can be changed later without rebuilding the resume from scratch.
-
-Template files are located in:
-
-```text
-templates/resume/templates/
-├── modern.html
-├── professional.html
-├── creative.html
-└── executive.html
-```
-
----
-
-# 🤖 Gemini AI Assistant
-
-ResumePro integrates **Google Gemini 2.5 Flash** to help users write better resume content.
-
-The AI Assistant provides several tools.
-
-### ✍️ Career Summary Generator
-
-Generates a professional career summary based on:
-
-- Profession
-- Existing skills
-- Experience
-
-The generated text is shown to the user before saving.
-
-### 🛠️ Skill Suggestions
-
-The AI can suggest relevant skills for the user's profession.
-
-The user can review and edit the suggestions before saving them.
-
-### 💼 Job Description Generator
-
-Generates professional work-experience bullet points using:
-
-- Job title
-- Company name
-- Employment type
-
-### 💻 Project Description Generator
-
-Generates a concise project description using:
-
-- Project name
-- Technologies used
-
-### 🚀 Full Resume Content Generator
-
-Can generate:
-
-- Professional summary
-- Multiple skill suggestions
-
-The user can edit the generated content before saving it.
-
-### 🔐 Human Review Before Saving
-
-AI-generated content is **not automatically written directly into the resume**.
-
-The workflow is:
+The AI workflow keeps the user in control:
 
 ```text
 User Input
@@ -233,120 +116,175 @@ User Saves
 Resume Updated
 ```
 
-This gives the user control over the final resume content.
+## 📄 Resume Preview & PDF
 
----
+Users can preview their resume before downloading it.
 
-# 📸 Image Handling
-
-The project uses **Pillow** for image processing.
-
-It supports:
-
-- Profile photos
-- Resume photos
-- Image upload
-- Crop
-- Zoom
-- Move/position adjustment
-
-The front-end crop functionality is implemented through the project's photo-cropper JavaScript functionality.
-
----
-
-# 📄 Resume Preview & PDF
-
-ResumePro uses **WeasyPrint** to generate PDFs.
-
-An important design choice is that the project uses the same HTML/CSS resume template for the preview and PDF generation.
-
-The workflow is:
+The application uses **WeasyPrint** to convert the resume HTML/CSS template into a PDF.
 
 ```text
 Resume Data
-     ↓
+    ↓
 Selected Template
-     ↓
+    ↓
 HTML + CSS
-     ↓
-Browser Preview
-     ↓
+    ↓
+Resume Preview
+    ↓
 WeasyPrint
-     ↓
-PDF Download
+    ↓
+PDF
 ```
 
-This helps keep the downloaded PDF visually consistent with the on-screen resume.
+## 🛡️ Custom Admin Dashboard
 
-The project also provides a browser **Print** workflow directly from the resume preview.
-
----
-
-# 👨‍💼 Custom Admin Dashboard
-
-In addition to Django's built-in admin system, ResumePro contains a custom staff-only admin dashboard.
-
-The dashboard provides information such as:
+The project includes a custom staff-only admin dashboard with information such as:
 
 - Total users
 - Active users
-- New users today
-- New users in the last 7 days
-- New users in the last 30 days
+- New users
 - Total resumes
-- Resumes created today
-- Visitors today
-- Visitors during the last 7 days
-- Approximate real-time visitors
-- Visitor trends
-- User growth
-- Template usage
-- Recent users
 - Recent resumes
-- Popular pages
+- Visitor statistics
+- Template usage
+- User management
+- Resume management
 
-### Custom Admin URL
+The project also keeps the standard Django Admin available separately.
 
-```text
-/myadmin/
-```
+## 📊 Visitor Tracking
 
-Only users with staff access can use the custom admin dashboard.
+A custom middleware records website analytics for normal page requests, including:
 
-### Django Built-in Admin
-
-The standard Django admin is available separately at:
-
-```text
-/django-admin/
-```
-
-The `/admin/` route redirects to the custom admin dashboard.
-
----
-
-# 📊 Visitor Tracking
-
-ResumePro includes a lightweight visitor-tracking middleware.
-
-For normal page requests, it records analytics information such as:
-
-- Visitor IP address
+- Visitor IP
 - Requested page
-- User
-- Session key
+- User/session information
 - User agent
 - Visit timestamp
 
-Static files, media files, Django admin requests, and the real-time polling endpoint are excluded from tracking.
-
-> Visitor tracking is intended for analytics. The recorded IP address should not be treated as a guaranteed security identity, especially behind proxies.
+Static/media requests and selected administrative/polling endpoints are excluded.
 
 ---
 
-# 🏗️ Technology Stack
+# 📸 Screenshots
 
-## Backend
+The screenshots below are from the actual ResumePro application.
+
+## 🏠 Home Page
+
+The landing page introduces ResumePro, displays the available professional templates and provides access to the main resume-building workflow.
+
+![ResumePro Home Page](docs/screenshots/01-home.png)
+
+---
+
+## 📝 Sign Up
+
+New users can create a ResumePro account through the registration page.
+
+![ResumePro Sign Up](docs/screenshots/02-signup.png)
+
+---
+
+## 🔐 Login
+
+Existing users can securely sign in and access their resumes and dashboard.
+
+![ResumePro Login](docs/screenshots/03-login.png)
+
+---
+
+## 📊 User Dashboard
+
+The dashboard gives users an overview of their resumes and resume-related information, with quick actions for creating and managing resumes.
+
+![ResumePro Dashboard](docs/screenshots/04-dashboard.png)
+
+---
+
+## 🧾 Create Resume
+
+The resume creation interface collects the information required to build a complete professional resume.
+
+![Create Resume](docs/screenshots/05-create-resume.png)
+
+---
+
+## 📋 Resume View / Management
+
+Users can view and manage their saved resume information from the application.
+
+![Resume View](docs/screenshots/06-resume-view.png)
+
+---
+
+## 🎨 Resume Preview
+
+The selected resume template renders the user's information into a professional resume layout.
+
+![Resume Preview](docs/screenshots/07-resume-preview.png)
+
+---
+
+## 🤖 AI Assistant
+
+The Gemini-powered AI Assistant helps generate professional resume content such as summaries, skills, job descriptions and project descriptions.
+
+![Gemini AI Assistant](docs/screenshots/08-ai-assistant.png)
+
+---
+
+## 👤 User Profile
+
+Users can manage account information, profile details and their saved resumes from the profile area.
+
+![User Profile](docs/screenshots/09-profile.png)
+
+---
+
+## ℹ️ About ResumePro
+
+The About page explains the purpose and major capabilities of the ResumePro application.
+
+![About ResumePro](docs/screenshots/10-about.png)
+
+---
+
+## 🛡️ Custom Admin Dashboard
+
+Staff users can monitor application activity through a dedicated analytics dashboard.
+
+![Admin Dashboard](docs/screenshots/11-admin-dashboard.png)
+
+---
+
+## 👥 User Management
+
+Staff users can inspect registered users and their related resume information.
+
+![User Management](docs/screenshots/12-user-management.png)
+
+---
+
+## 📄 All Resumes
+
+The custom admin area provides an overview of resumes created in the application.
+
+![All Resumes](docs/screenshots/13-all-resumes.png)
+
+---
+
+## ⚙️ Django Admin
+
+The standard Django administration interface is also available for model-level management.
+
+![Django Admin](docs/screenshots/14-django-admin.png)
+
+---
+
+# 🛠️ Technology Stack
+
+### Backend
 
 - Python
 - Django
@@ -354,47 +292,91 @@ Static files, media files, Django admin requests, and the real-time polling endp
 - Django Authentication
 - Django Middleware
 
-## Frontend
+### Frontend
 
 - HTML5
 - CSS3
 - JavaScript
-- Bootstrap 5.3
+- Bootstrap 5
 - Bootstrap Icons
 - Google Fonts
 
-## Database
+### Database
 
 - MySQL
-- SQLite optional for local development/testing
+- SQLite option for local development/testing
 
-## AI
+### AI
 
 - Google Gemini API
 - Gemini 2.5 Flash
 
-## PDF
+### PDF Generation
 
 - WeasyPrint
 
-## Image Processing
+### Image Processing
 
 - Pillow
 - Client-side photo crop/zoom functionality
 
-## Configuration
+### Configuration
 
 - python-dotenv
 - Environment variables
 
-## Production Server
+### Production
 
 - Gunicorn
+- Render
 
-## Version Control
+### Version Control
 
 - Git
 - GitHub
+
+---
+
+# 🏗️ Project Architecture
+
+```text
+                         ┌────────────────────┐
+                         │      Browser       │
+                         └─────────┬──────────┘
+                                   │
+                                   ▼
+                         ┌────────────────────┐
+                         │    Django URLs     │
+                         └─────────┬──────────┘
+                                   │
+                                   ▼
+                         ┌────────────────────┐
+                         │       Views        │
+                         └──────┬───┬───┬─────┘
+                                │   │   │
+                 ┌──────────────┘   │   └──────────────┐
+                 ▼                  ▼                  ▼
+            ┌─────────┐       ┌─────────┐       ┌────────────┐
+            │  Forms  │       │ Models  │       │ Gemini API │
+            └─────────┘       └────┬────┘       └────────────┘
+                                    │
+                                    ▼
+                              ┌──────────┐
+                              │ Database │
+                              └──────────┘
+
+Resume Template
+      │
+      ▼
+ HTML + CSS
+      │
+      ├──────────────► Browser Preview
+      │
+      └──────────────► WeasyPrint
+                              │
+                              ▼
+                         PDF Download
+```
 
 ---
 
@@ -407,7 +389,7 @@ resume_builder/
 ├── requirements.txt
 ├── SETUP.txt
 ├── .gitignore
-├── .env                    # Local secrets - DO NOT COMMIT
+├── .env
 │
 ├── accounts/
 │   ├── admin.py
@@ -445,26 +427,14 @@ resume_builder/
 │   ├── change_template.html
 │   │
 │   ├── accounts/
-│   │   ├── login.html
-│   │   ├── signup.html
-│   │   ├── profile.html
-│   │   ├── edit_profile.html
-│   │   └── change_password.html
-│   │
 │   ├── custom_admin/
-│   │   ├── base.html
-│   │   ├── dashboard.html
-│   │   ├── users.html
-│   │   ├── user_detail.html
-│   │   └── resumes.html
 │   │
 │   └── resume/
 │       └── templates/
 │           ├── modern.html
 │           ├── professional.html
 │           ├── creative.html
-│           ├── executive.html
-│           └── _toolbar.html
+│           └── executive.html
 │
 ├── static/
 │   ├── css/
@@ -473,8 +443,6 @@ resume_builder/
 │   │   ├── script.js
 │   │   └── photo-cropper.js
 │   └── images/
-│       ├── favicon.svg
-│       └── ResumeProLogo.png
 │
 └── media/
     ├── profile_photos/
@@ -485,71 +453,37 @@ resume_builder/
 
 # 🗄️ Database Design
 
-The application uses Django models with relationships between users and resume sections.
+The application uses Django models and relationships to organize resume information.
 
-## Main Models
-
-### UserProfile
-
-Extends Django's built-in `User` with:
-
-- Photo
-- Phone
-- Bio
-- City
-- Website
-- LinkedIn
-- GitHub
-
-Each Django user automatically receives a `UserProfile`.
-
-### Resume
-
-Stores the main resume information and belongs to one user.
+The main structure is:
 
 ```text
 User
+ │
+ ├── UserProfile
+ │
  └── Resume
-      ├── Education
-      ├── Experience
-      ├── Project
-      ├── Skill
-      ├── Certificate
-      ├── Language
-      └── Hobby
+       │
+       ├── Education
+       ├── Experience
+       ├── Project
+       ├── Skill
+       ├── Certificate
+       ├── Language
+       └── Hobby
 ```
 
-The child records use foreign keys to the Resume model.
+A user can manage multiple resumes, and each resume can contain multiple records for its different sections.
 
-Deleting a resume also removes its related child records through Django's cascade behavior.
-
-### SiteVisitor
-
-Stores website analytics information used by the custom admin dashboard.
+The project also includes a `SiteVisitor` model for visitor analytics.
 
 ---
 
-# 🔐 Security & Environment Variables
+# 🔐 Environment Variables
 
-Sensitive configuration is loaded from environment variables rather than being hard-coded into the application.
+Sensitive values should be stored in environment variables and **never committed to GitHub**.
 
-The project uses variables such as:
-
-```text
-DJANGO_SECRET_KEY
-DJANGO_DEBUG
-DJANGO_ALLOWED_HOSTS
-
-DB_NAME
-DB_USER
-DB_PASSWORD
-DB_HOST
-DB_PORT
-
-GEMINI_API_KEY
-```
-
-For local development, create a `.env` file in the same directory as `manage.py`.
+Create a `.env` file in the same directory as `manage.py`.
 
 Example:
 
@@ -569,43 +503,18 @@ GEMINI_API_KEY=your_gemini_api_key
 USE_SQLITE=False
 ```
 
-### SQLite Option
-
-If you do not want to configure MySQL for a quick local test, use:
-
-```env
-USE_SQLITE=True
-```
-
-The project will then use:
-
-```text
-db.sqlite3
-```
-
-instead of MySQL.
-
-> ⚠️ Never commit your real `.env` file, API keys, database passwords, or Django production secret key to GitHub.
+> ⚠️ Do not copy real API keys, database passwords or secret keys into this README.
 
 ---
 
-# 🛠️ Local Installation
+# 💻 Local Installation
 
 ## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/sandeepbharat211/resume-builder.git
-```
-
-Move into the project:
-
-```bash
 cd resume-builder
 ```
-
-If the downloaded repository contains an additional outer folder, enter the folder containing `manage.py`.
-
----
 
 ## 2. Create a Virtual Environment
 
@@ -613,11 +522,6 @@ If the downloaded repository contains an additional outer folder, enter the fold
 
 ```bash
 python -m venv venv
-```
-
-Activate it:
-
-```bash
 venv\Scripts\activate
 ```
 
@@ -625,15 +529,8 @@ venv\Scripts\activate
 
 ```bash
 python3 -m venv venv
-```
-
-Activate it:
-
-```bash
 source venv/bin/activate
 ```
-
----
 
 ## 3. Install Dependencies
 
@@ -641,125 +538,30 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-The main dependencies include:
+## 4. Configure Environment Variables
 
-```text
-Django
-mysqlclient
-Pillow
-WeasyPrint
-google-generativeai
-python-dotenv
-```
+Create `.env` and add the required configuration.
 
----
-
-# 🗄️ MySQL Setup
-
-If you are using MySQL, create the database first.
-
-Example:
-
-```sql
-CREATE DATABASE resume_builder_db
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_unicode_ci;
-```
-
-Then configure the database variables in `.env`.
-
-```env
-DB_NAME=resume_builder_db
-DB_USER=your_mysql_user
-DB_PASSWORD=your_mysql_password
-DB_HOST=localhost
-DB_PORT=3306
-```
-
----
-
-# 🧪 SQLite Quick Setup
-
-For a simple local test without MySQL:
-
-```env
-USE_SQLITE=True
-```
-
-Then continue with migrations.
-
-This is useful when you want to test the application before configuring a production database.
-
----
-
-# 🔑 Gemini API Setup
-
-The AI Assistant requires a Google Gemini API key.
-
-Create a key through Google AI Studio:
-
-https://aistudio.google.com/app/apikey
-
-Add it to `.env`:
-
-```env
-GEMINI_API_KEY=your_gemini_api_key
-```
-
-The application is configured to use:
-
-```text
-gemini-2.5-flash
-```
-
----
-
-# 🗃️ Run Migrations
-
-From the folder containing `manage.py`:
+## 5. Run Migrations
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
----
-
-# 👤 Create Admin / Staff User
-
-Create a Django superuser:
+## 6. Create a Superuser
 
 ```bash
 python manage.py createsuperuser
 ```
 
-Follow the prompts for:
-
-- Username
-- Email
-- Password
-
-A superuser has staff access and can access the custom admin dashboard.
-
----
-
-# 📦 Collect Static Files
-
-For production or deployment:
+## 7. Collect Static Files
 
 ```bash
 python manage.py collectstatic
 ```
 
-This collects project static assets into:
-
-```text
-staticfiles/
-```
-
----
-
-# ▶️ Run the Development Server
+## 8. Start the Development Server
 
 ```bash
 python manage.py runserver
@@ -773,292 +575,199 @@ http://127.0.0.1:8000/
 
 ---
 
+# 🗄️ MySQL Setup
+
+Create a MySQL database:
+
+```sql
+CREATE DATABASE resume_builder_db
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+```
+
+Then configure:
+
+```env
+DB_NAME=resume_builder_db
+DB_USER=your_mysql_user
+DB_PASSWORD=your_mysql_password
+DB_HOST=localhost
+DB_PORT=3306
+```
+
+### SQLite Alternative
+
+For quick local testing, use:
+
+```env
+USE_SQLITE=True
+```
+
+This allows the project to use a local `db.sqlite3` database instead of MySQL.
+
+---
+
+# 🤖 Gemini AI Setup
+
+ResumePro uses Google's Gemini API for AI-assisted resume content.
+
+Create an API key through Google AI Studio:
+
+https://aistudio.google.com/app/apikey
+
+Then add:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+The AI Assistant is designed to generate content that the user can review and edit before saving.
+
+---
+
+# 📄 PDF Generation
+
+ResumePro uses **WeasyPrint** for PDF generation.
+
+If the Python package is installed but PDF generation reports missing native dependencies, follow the official WeasyPrint installation guide:
+
+https://doc.courtbouillon.org/weasyprint/stable/first_steps.html
+
+---
+
+# ☁️ Render Deployment
+
+The project can be deployed using Gunicorn on Render.
+
+### Production Start Command
+
+```bash
+gunicorn resume_builder.wsgi:application
+```
+
+### Recommended Environment Variables
+
+```text
+DJANGO_SECRET_KEY
+DJANGO_DEBUG=False
+DJANGO_ALLOWED_HOSTS
+DB_NAME
+DB_USER
+DB_PASSWORD
+DB_HOST
+DB_PORT
+GEMINI_API_KEY
+USE_SQLITE=False
+```
+
+After deployment, verify:
+
+- Home page
+- Signup/login
+- Dashboard
+- Resume creation
+- Template selection
+- AI Assistant
+- PDF generation
+- Profile/media uploads
+- Admin access
+
+---
+
 # 🔗 Important URLs
 
 | Purpose | URL |
 |---|---|
 | Home | `/` |
 | Dashboard | `/dashboard/` |
-| Choose Template | `/choose-template/` |
 | Create Resume | `/create/` |
 | Resume List | `/list/` |
+| Choose Template | `/choose-template/` |
 | Profile | `/accounts/profile/` |
 | Login | `/accounts/login/` |
 | Signup | `/accounts/signup/` |
 | Custom Admin | `/myadmin/` |
 | Django Admin | `/django-admin/` |
 
-Resume-specific URLs are generated dynamically using the resume ID.
+---
+
+# 🔒 Security
+
+ResumePro uses several basic security practices:
+
+- Environment variables for secrets
+- `.env` excluded from Git
+- Django authentication
+- User-specific resume access
+- Staff-only custom administration
+- Database credentials outside source code
+- Gemini API key outside source code
+
+If a secret is ever accidentally committed to a public repository, rotate/revoke it immediately.
 
 ---
 
-# ☁️ Deployment
-
-The application can be deployed on a platform such as **Render** using Gunicorn.
-
-A production start command is:
-
-```bash
-gunicorn resume_builder.wsgi:application
-```
-
-## Recommended Production Environment Variables
-
-Configure these in the hosting platform's environment-variable settings:
+# 🔄 Complete User Workflow
 
 ```text
-DJANGO_SECRET_KEY
-DJANGO_DEBUG=False
-DJANGO_ALLOWED_HOSTS=your-domain.com
-
-DB_NAME
-DB_USER
-DB_PASSWORD
-DB_HOST
-DB_PORT
-
-GEMINI_API_KEY
-
-USE_SQLITE=False
+Register
+   ↓
+Login
+   ↓
+Dashboard
+   ↓
+Choose Resume Template
+   ↓
+Create Resume
+   ↓
+Add Personal Information
+   ↓
+Add Education / Experience / Projects
+   ↓
+Add Skills / Certificates / Languages / Hobbies
+   ↓
+Use Gemini AI Assistant (Optional)
+   ↓
+Review & Edit Content
+   ↓
+Resume Preview
+   ↓
+Print / Download PDF
 ```
 
-Do not place production secrets directly into source code.
-
 ---
 
-# 🚀 Production Checklist
-
-Before deploying:
-
-- [ ] Set a strong `DJANGO_SECRET_KEY`
-- [ ] Set `DJANGO_DEBUG=False`
-- [ ] Configure `DJANGO_ALLOWED_HOSTS`
-- [ ] Configure the production database
-- [ ] Add `GEMINI_API_KEY`
-- [ ] Run migrations
-- [ ] Run `collectstatic`
-- [ ] Confirm Gunicorn starts successfully
-- [ ] Test login/signup
-- [ ] Test resume creation
-- [ ] Test all resume templates
-- [ ] Test PDF generation
-- [ ] Test AI Assistant
-- [ ] Confirm media uploads work
-- [ ] Confirm admin access
-
----
-
-# 🧩 WeasyPrint Notes
-
-WeasyPrint is used for PDF generation.
-
-Depending on the operating system, WeasyPrint may require additional system libraries such as:
-
-- Pango
-- Cairo
-- GDK-PixBuf
-
-If Python installation succeeds but PDF generation fails, follow the official installation instructions:
-
-https://doc.courtbouillon.org/weasyprint/stable/first_steps.html
-
----
-
-# 🔄 Application Workflow
-
-The complete user workflow is approximately:
+# 🛡️ Admin Workflow
 
 ```text
-                  ┌─────────────────┐
-                  │   Register      │
-                  └────────┬────────┘
-                           ↓
-                  ┌─────────────────┐
-                  │    Dashboard    │
-                  └────────┬────────┘
-                           ↓
-                  ┌─────────────────┐
-                  │ Choose Template │
-                  └────────┬────────┘
-                           ↓
-                  ┌─────────────────┐
-                  │ Create Resume   │
-                  └────────┬────────┘
-                           ↓
-        ┌──────────────────┼──────────────────┐
-        ↓                  ↓                  ↓
-   Personal Info       Education         Experience
-        ↓                  ↓                  ↓
-     Projects            Skills          Certificates
-        ↓                  ↓                  ↓
-   Languages            Hobbies          Photo
-        └──────────────────┼──────────────────┘
-                           ↓
-                  ┌─────────────────┐
-                  │   AI Assistant  │
-                  └────────┬────────┘
-                           ↓
-                  ┌─────────────────┐
-                  │ Review & Edit   │
-                  └────────┬────────┘
-                           ↓
-                  ┌─────────────────┐
-                  │ Resume Preview  │
-                  └────────┬────────┘
-                           ↓
-              ┌────────────┴────────────┐
-              ↓                         ↓
-        Browser Print              PDF Download
+Staff Login
+    ↓
+Custom Admin Dashboard
+    ├── Analytics
+    ├── User Management
+    ├── Resume Management
+    ├── Template Usage
+    └── Visitor Statistics
+              │
+              ▼
+       Django Admin
 ```
-
----
-
-# 🔒 Data Ownership & Access
-
-Resume records are associated with the authenticated user.
-
-The application uses Django's authentication decorators and object-level filtering so normal users work with their own resumes and related records.
-
-For example, resume operations use the logged-in user when retrieving records:
-
-```python
-get_object_or_404(Resume, id=id, user=request.user)
-```
-
-This prevents a normal user from simply changing a resume ID in the URL to access another user's resume through these views.
-
----
-
-# 📁 Important Files
-
-| File | Purpose |
-|---|---|
-| `manage.py` | Django project command-line utility |
-| `resume_builder/settings.py` | Project configuration |
-| `resume_builder/urls.py` | Main URL configuration |
-| `resume_builder/wsgi.py` | WSGI entry point for deployment |
-| `accounts/models.py` | User profile model |
-| `accounts/forms.py` | Authentication/profile forms |
-| `accounts/views.py` | Login, signup, profile logic |
-| `resume/models.py` | Resume and section database models |
-| `resume/forms.py` | Resume section forms |
-| `resume/views.py` | Resume, AI, PDF and admin logic |
-| `resume/middleware.py` | Visitor analytics middleware |
-| `static/css/style.css` | Main application styling |
-| `static/js/script.js` | Front-end functionality |
-| `static/js/photo-cropper.js` | Photo crop/zoom functionality |
-| `templates/resume/templates/` | Resume designs |
-| `requirements.txt` | Python dependencies |
-| `.gitignore` | Files excluded from Git |
-
----
-
-# 🧠 Architecture Overview
-
-ResumePro follows Django's standard application structure:
-
-```text
-Browser
-   │
-   ▼
-Django URLs
-   │
-   ▼
-Views
-   │
-   ├──────────────► Forms
-   │
-   ├──────────────► Models
-   │
-   ├──────────────► Gemini API
-   │
-   └──────────────► HTML Templates
-                         │
-                         ▼
-                    HTML + CSS
-                         │
-                         ▼
-                     WeasyPrint
-                         │
-                         ▼
-                         PDF
-```
-
-The project is separated into two primary Django applications:
-
-### `accounts`
-
-Responsible for:
-
-- Registration
-- Login
-- Logout
-- User profile
-- Password changes
-
-### `resume`
-
-Responsible for:
-
-- Resume creation
-- Resume editing
-- Resume sections
-- Templates
-- Preview
-- PDF generation
-- Gemini AI Assistant
-- Visitor tracking
-- Custom admin dashboard
-
----
-
-# 🧹 Git & Security
-
-The project's `.gitignore` excludes sensitive and generated files such as:
-
-```text
-__pycache__/
-*.pyc
-db.sqlite3
-/staticfiles/
-/media/
-.env
-```
-
-This is important because `.env` can contain:
-
-- Django secret key
-- Database password
-- Gemini API key
-
-If a secret has accidentally been committed to a public Git repository, it should be rotated immediately.
 
 ---
 
 # 🐛 Troubleshooting
 
-## CSS or JavaScript Changes Are Not Appearing
+### CSS/JavaScript changes are not appearing
 
-Try:
-
-1. Stop the server.
-2. Start it again:
-
-```bash
-python manage.py runserver
-```
-
-3. Hard refresh the browser:
+Try a hard refresh:
 
 ```text
 Ctrl + Shift + R
 ```
 
-4. If necessary, test in an Incognito/Private window.
+Also verify static files are collected in production.
 
----
-
-## Database Connection Error
+### Database connection error
 
 Check:
 
@@ -1070,83 +779,72 @@ DB_HOST
 DB_PORT
 ```
 
-Also verify that the MySQL server is running.
+Also make sure the database server is running.
 
-For a quick local test, you can temporarily use:
+For quick local testing:
 
 ```env
 USE_SQLITE=True
 ```
 
----
+### Gemini AI error
 
-## PDF Generation Error
-
-Confirm that:
-
-```bash
-pip install weasyprint
-```
-
-completed successfully.
-
-If the error mentions missing native libraries, install the required system dependencies for your operating system using the official WeasyPrint documentation.
-
----
-
-## Gemini AI Error
-
-Check:
+Verify:
 
 ```env
 GEMINI_API_KEY=your_key
 ```
 
-Also verify that the API key is valid and that the configured Gemini model is available for your API account.
+and confirm the key is valid and has access to the configured Gemini model.
+
+### PDF generation error
+
+Verify WeasyPrint installation and any required system libraries.
 
 ---
 
-# 🔮 Future Improvements
+# 🚀 Future Improvements
 
-Possible future enhancements include:
+Potential future improvements include:
 
-- More professional resume templates
+- More resume templates
 - ATS-focused resume analysis
-- Resume scoring
 - Job-description-based resume customization
-- AI-powered keyword optimization
-- More export formats
-- Public/shareable resume links
+- AI keyword optimization
 - Resume version history
+- Public/shareable resume links
+- Additional export formats
 - Drag-and-drop resume sections
 - Email resume sharing
 - More advanced analytics
 - Cloud media storage
-- Improved mobile UI
-- Automated deployment pipeline
+- Improved mobile experience
+- Automated CI/CD deployment
 
 ---
 
-# 🎯 Project Goals
+# 🎯 What This Project Demonstrates
 
-This project demonstrates practical full-stack development skills including:
+This project demonstrates practical experience with:
 
-- Django web development
-- Relational database design
-- User authentication
+- Python development
+- Django full-stack development
+- Database design
+- Django ORM
+- Authentication
 - CRUD operations
 - File uploads
 - Image processing
-- Responsive frontend development
-- Third-party API integration
-- Generative AI integration
+- Responsive UI development
+- AI API integration
+- Generative AI workflows
 - PDF generation
-- Middleware development
-- Analytics
+- Custom middleware
+- Visitor analytics
 - Admin dashboard development
 - Environment-based configuration
-- Git/GitHub workflow
-- Production deployment
+- Git/GitHub
+- Cloud deployment with Render
 
 ---
 
@@ -1154,50 +852,14 @@ This project demonstrates practical full-stack development skills including:
 
 **Sandeep Bharat**
 
-GitHub:
-
-https://github.com/sandeepbharat211
-
----
-
-# ⭐ Contributing
-
-Contributions and suggestions are welcome.
-
-If you want to improve the project:
-
-```bash
-git fork
-```
-
-Create a feature branch:
-
-```bash
-git checkout -b feature/your-feature
-```
-
-Commit your changes:
-
-```bash
-git add .
-git commit -m "Add your feature"
-```
-
-Push the branch:
-
-```bash
-git push origin feature/your-feature
-```
-
-Then open a Pull Request.
+- GitHub: https://github.com/sandeepbharat211/resume-builder/
+- Live Project: https://resume-builder-at2p.onrender.com/
 
 ---
 
-# 📜 License
+# ⭐ Support the Project
 
-No explicit open-source license file is currently included in the project.
-
-If this repository is intended to be reused or distributed publicly, consider adding an appropriate `LICENSE` file.
+If you find ResumePro useful or interesting, consider giving the repository a ⭐ on GitHub.
 
 ---
 
